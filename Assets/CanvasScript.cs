@@ -17,6 +17,7 @@ public class CanvasScript : MonoBehaviour
             canvasText1.enabled = false;
         }
     }
+//<<<<<<< mikeroberts55-patch-1
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("ranger"))
@@ -24,6 +25,8 @@ public class CanvasScript : MonoBehaviour
             canvasText1.enabled = true;
         }
     }
+//=======
+//>>>>>>> devBranch
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("ranger"))

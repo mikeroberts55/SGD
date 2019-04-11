@@ -7,7 +7,11 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController2D controller;
     public Animator animator;
     GameObject Player, Player2,Cam1,Cam2;
+//<<<<<<< mikeroberts55-patch-1
     int count = 2;
+//=======
+    int characterselect;
+//>>>>>>> devBranch
 
     float horizontalMove = 0f;
     public float runSpeed = 40f;
@@ -19,10 +23,16 @@ public class PlayerMovement : MonoBehaviour
         Player2 = GameObject.Find("Player2");
         Cam1 = GameObject.Find("CM vcam1");
         Cam2 = GameObject.Find("CM vcam1 (1)");
+//<<<<<<< mikeroberts55-patch-1
         Invoke("changeCharacter", 0.2f);
+//=======
+
+        characterselect = 1;
+//>>>>>>> devBranch
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
     }
+//<<<<<<< mikeroberts55-patch-1
 
     public void changeCharacter()
     {
@@ -67,6 +77,36 @@ public class PlayerMovement : MonoBehaviour
             count = 1;
         }
     }
+//=======
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (characterselect == 1)
+            {
+                characterselect = 2;
+            }
+            else if (characterselect == 2)
+            {
+                characterselect = 1;
+            }
+        }
+        if (characterselect == 1)
+        {
+            Player.SetActive(true);
+            Player2.SetActive(false);
+            Cam1.SetActive(true);
+            Cam2.SetActive(false);
+        }
+        else if (characterselect == 2)
+        {
+            Player.SetActive(false);
+            Player2.SetActive(true);
+            Cam1.SetActive(false);
+            Cam2.SetActive(true);
+        }
+//>>>>>>> devBranch
 
     // Update is called once per frame
     void Update()
