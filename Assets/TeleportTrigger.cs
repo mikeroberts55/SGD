@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
+ [RequireComponent(typeof(Collider2D))]
 public class TeleportTrigger : MonoBehaviour
 {
     public enum TriggerType { Enter, Exit };
+    public string key = "Press E";
 
     [Tooltip("The Transform to teleport to")]
     [SerializeField] Transform teleportTo;
@@ -16,21 +17,11 @@ public class TeleportTrigger : MonoBehaviour
     [Tooltip("Trigger Event to Teleport")]
     [SerializeField] TriggerType type;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (type != TriggerType.Enter)
-            return;
-              
-            other.transform.position = teleportTo.position;
-                
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (type != TriggerType.Exit)
-            return;
-
-            other.transform.position = teleportTo.position;
-        
-    }
+        void OnTriggerStay2D(Collider2D other)
+        {
+            if (Input.GetKeyUp(KeyCode.E) && other.CompareTag("ranger"))
+            {
+                other.transform.position = teleportTo.position;
+            }
+        }
 }
